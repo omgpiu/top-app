@@ -9,8 +9,8 @@ class MyDocument extends Document {
 
     render(): JSX.Element {
         return (
-            <Html lang="ru">
-                <Head/>
+            <Html lang={ 'ru' }>
+                <Head><title>E-commerce</title></Head>
                 <body>
                 <Main/>
                 <NextScript/>
