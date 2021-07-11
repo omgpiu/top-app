@@ -1,0 +1,26 @@
+.wrapper {
+	display: grid;
+
+	min-height: 72px;
+	padding: 25px 30px;
+
+	color: var(--white);
+
+	background-color: var(--primary);
+
+	font-size: var(--font-size-footer);
+	line-height: var(--line-height-footer);
+	gap: 10px 40px;
+	grid-template-columns: 1fr auto auto;
+}
+
+.wrapper a:hover {
+	color: var(--grey-light);
+}
+
+@media (max-width: 765px) {
+	.wrapper {
+		justify-items: center;
+		grid-template-columns: 1fr;
+	}
+}
