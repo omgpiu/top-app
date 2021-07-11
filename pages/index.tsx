@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Htag, Ptag, Rating } from '../componetns';
 
 
 export default function Home(): JSX.Element {
+    const [rating, setRating] = useState(4)
     return (
         <>
             <Htag tag="h1">Text</Htag>
             <Button appearance={ 'primary' } arrow={ 'right' }>Primary</Button>
             <Button appearance={ 'ghost' } arrow={ 'right' }>Ghost</Button>
             <Ptag size={ 'default' }>Bla Bla</Ptag>
-            <Rating rating={ 4 }/>
+            <Rating rating={ rating } isEditable setRating={ setRating }/>
         </>
     )
 }
