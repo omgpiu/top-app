@@ -6,6 +6,8 @@ import axios from 'axios';
 import { MenuItemType } from '../Types/MenuTypes';
 
 
+
+
 function Home({ menu, firstCategory }: HomeProps): JSX.Element {
     const [rating, setRating] = useState(4)
     return (
@@ -37,6 +39,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         }
     }
 }
+
+
 type HomeProps = {
     menu: MenuItemType[],
     firstCategory: number
