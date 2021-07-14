@@ -3,10 +3,10 @@ import { Button, Htag, Ptag, Rating } from '../componetns';
 import { withLayout } from '../layout/Layout';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
-import { MenuItemType } from '../Types/MenuTypes';
+import { MenuItemType } from '../interfaces/MenuTypes';
 
 
-function Home({menu, firstCategory}: HomeProps): JSX.Element {
+function Home({menu}: HomeProps): JSX.Element {
   const [rating, setRating] = useState(4);
   return (
     <>
@@ -15,9 +15,7 @@ function Home({menu, firstCategory}: HomeProps): JSX.Element {
       <Button appearance={'ghost'} arrow={'right'}>Ghost</Button>
       <Ptag size={'default'}>Bla Bla</Ptag>
       <Rating rating={rating} isEditable setRating={setRating} />
-      <ul>
-        {menu.map(el => (<li key={el._id.secondCategory}>{el._id.secondCategory}</li>))}
-      </ul>
+
 
     </>
   );
