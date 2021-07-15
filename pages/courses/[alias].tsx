@@ -4,7 +4,7 @@ import React from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import axios from 'axios';
 import { withLayout } from '../../layout/Layout';
-import { MenuItemType } from '../../interfaces/MenuTypes';
+import { IMenuItem } from '../../interfaces/menu.interface';
 import { ITopPageModel } from '../../interfaces/top-page.interface';
 import { ParsedUrlQuery } from 'querystring';
 import { IProductModal } from '../../interfaces/product.interface';
@@ -23,7 +23,7 @@ const Course = ({menu, page, products}: ICourseProps): JSX.Element => {
 export default withLayout(Course);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const {data: menu} = await axios.post<MenuItemType[]>(
+  const {data: menu} = await axios.post<IMenuItem[]>(
     process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
     {firstCategory});
   return {
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<ICourseProps> = async ({params}: Get
     };
   }
   //сервер ожидает POST , вместо get <WTF>
-  const {data: menu} = await axios.post<MenuItemType[]>(
+  const {data: menu} = await axios.post<IMenuItem[]>(
     process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
     {firstCategory});
   const {data: page} = await axios.get<ITopPageModel>(
@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<ICourseProps> = async ({params}: Get
 
 
 interface ICourseProps extends Record<string, unknown> {
-  menu: MenuItemType[]
+  menu: IMenuItem[]
   firstCategory: number
   page: ITopPageModel
   products: IProductModal[]
