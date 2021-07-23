@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../context';
 import Link from 'next/link';
 import st from './Menu.module.css';
@@ -6,6 +6,7 @@ import { FirstLevelMenuItem, IPageItem } from '../../interfaces/menu.interface';
 import { TopLevelCategory } from '../../interfaces/top-page.interface';
 import { Book, Box, Cloud, Hat } from './icons';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
 
 const firstLevelMenu: FirstLevelMenuItem[] = [
   {id: TopLevelCategory.Courses, title: 'Курсы', icon: <Hat />, route: 'courses'},
@@ -18,7 +19,18 @@ const firstLevelMenu: FirstLevelMenuItem[] = [
 
 export const Menu: React.FC = (): JSX.Element => {
   const {menu, setMenu, firstCategory} = useContext(AppContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const openSecondLevel = (secondCategory: string) => () => {
+    setMenu && setMenu(menu.map(m => {
+      if (m._id.secondCategory === secondCategory) {
+        m.isOpen = !m.isOpen;
+      }
+      return m;
+    }));
+
+  };
+
   const firstLevelMenuRender = () => {
     return (
       <>
@@ -27,14 +39,15 @@ export const Menu: React.FC = (): JSX.Element => {
             <Link href={`/${flmenu.route}`}>
               <a>
                 <div className={cn(st.firstLevel, {
-                  [st.firstLevelActive]: flmenu.id === firstCategory
+                  [st.firstLevelActive]: flmenu.id == firstCategory
                 })}>
-                  {flmenu.icon}<span>{flmenu.title}</span>
+                  {flmenu.icon}
+                  <span>{flmenu.title}</span>
                 </div>
               </a>
             </Link>
             {
-              flmenu.id === firstCategory && secondLevelMenuRender(flmenu.route)
+              flmenu.id === firstCategory && secondLevelMenuRender(flmenu)
             }
 
           </div>
@@ -42,23 +55,27 @@ export const Menu: React.FC = (): JSX.Element => {
       </>
     );
   };
-  const secondLevelMenuRender = (route: string) => {
+  const secondLevelMenuRender = (flmenu: FirstLevelMenuItem) => {
     return (
-      <div className={st.secondBlock} onClick={() => setIsOpen(prev => !prev)}>
-        {menu.map(slmenu => (
-          <div key={slmenu._id.secondCategory}>
-            <div className={st.secondLevel}>
-              {slmenu._id.secondCategory}
-            </div>
-            <div className={cn(
-              st.secondLevelBlock, {
+      <div className={st.secondBlock}>
+        {menu.map(slmenu => {
+          if (slmenu.pages.map(p => p.alias).includes(router.asPath.split('/')[2])) {
+
+            slmenu.isOpen = true;
+          }
+          return (
+            <div key={slmenu._id.secondCategory}>
+              <div className={st.secondLevel} onClick={openSecondLevel(slmenu._id.secondCategory)}>
+                {slmenu._id.secondCategory}
+              </div>
+              <div className={cn(st.secondLevelBlock, {
                 [st.secondLevelBlockOpen]: slmenu.isOpen
-              }
-            )}>
-              {thirdLevelMenuRender(slmenu.pages, route)}
+              })}>
+                {thirdLevelMenuRender(slmenu.pages, flmenu.route)}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     );
   };
@@ -72,7 +89,7 @@ export const Menu: React.FC = (): JSX.Element => {
                 [st.thirdLevelActive]: false
               })}
 
-            >{isOpen && page.category}</a>
+            > {page.category}</a>
           </Link>
         ))}
       </>

@@ -22,29 +22,48 @@
 
 .secondLevel {
 	margin-bottom: 10px;
+	padding: 0;
 
 	cursor: pointer;
 	text-transform: uppercase;
 
 	color: var(--grey-dark);
+	border: none;
+
+	background: none;
 
 	font-size: 12px;
+
 	font-weight: 300;
-	line-height: 16px;
 }
 
 .secondBlock {
 	margin-top: 15px;
-	margin-bottom: 24px;
 	margin-left: 12px;
-	padding-left: 32px;
+	padding: 0 0 0 32px;
 
-	border-left: 1px solid var(--grey-dark);
+	list-style: none;
+
+	border-left: 1px solid #DFDFDF;
 }
 
-.secondBlock:last-child {
+.secondLevelBlock {
+	display: none;
+
+	/* overflow: hidden; */
+
+	/* padding: 0; */
+
+	/* list-style: none; */
+}
+.secondLevelBlockOpen {
+	display: block;
+}
+
+.secondLevelBlockOpen:last-child {
 	margin-bottom: 20px;
 }
+
 
 .thirdLevel {
 	display: block;
