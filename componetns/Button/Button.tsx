@@ -3,7 +3,6 @@ import React from 'react';
 import ArrowIcon from './arrow.svg'
 import ButtonCSS from './Button.module.css'
 import cn from 'classnames'
-import { classNameCheck } from '../../helpers';
 
 export const Button: React.FC<ButtonProps> = ({
                                                   children,
@@ -13,7 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
                                                   ...rest
                                               }): JSX.Element => {
     return (
-        <button className={ cn(ButtonCSS.button, classNameCheck(className), {
+        <button className={ cn(ButtonCSS.button, className, {
             [ButtonCSS.primary]: appearance === 'primary',
             [ButtonCSS.ghost]: appearance === 'ghost',
         }) }

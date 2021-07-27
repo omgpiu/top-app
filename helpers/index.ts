@@ -1,1 +1,1 @@
-export * from './classNamesTypeChecker'
+export * from './menuRoutes'

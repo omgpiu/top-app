@@ -1,0 +1,12 @@
+.sidebar {
+	display: grid;
+	gap: 20px;
+
+	align-content: start;
+
+	border: 1px solid black;
+}
+
+.logo {
+	margin-top: 34px;
+}
