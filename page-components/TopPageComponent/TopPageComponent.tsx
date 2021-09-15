@@ -2,6 +2,7 @@ import React from 'react';
 import { ITopPageComponent } from './TopPageComponent.props';
 import { Card, Htag, Tag } from '../../componetns';
 import st from './TopPageComponent.module.css'
+import { HHData } from '../../componetns/HHData/HHData';
 
 export const TopPageComponent = ({ page, products }: ITopPageComponent): JSX.Element => {
 
@@ -22,13 +23,7 @@ export const TopPageComponent = ({ page, products }: ITopPageComponent): JSX.Ele
                 <Htag tag='h2'>Вакансии - {page.category}</Htag>
                 <Tag color="red" size="m">hh.ru</Tag>
             </div>
-            <div className={st.hh}>
-            <Card >
-            <div>Всего вакансий</div>
-            <div>{page.hh.count}</div>
-
-            </Card>
-            </div>
+            <HHData {...page.hh} />
         </div>
     );
 };
