@@ -1,10 +1,11 @@
 import React from 'react';
 import { ITopPageComponent } from './TopPageComponent.props';
-import { Card, Htag, Tag } from '../../componetns';
+import { Htag, Tag } from '../../componetns';
 import st from './TopPageComponent.module.css'
 import { HHData } from '../../componetns/HHData/HHData';
+import { TopLevelCategory } from '../../interfaces/top-page.interface';
 
-export const TopPageComponent = ({ page, products }: ITopPageComponent): JSX.Element => {
+export const TopPageComponent = ({ page, products, firstCategory }: ITopPageComponent): JSX.Element => {
 
     return (
         <div className={ st.wrapper }>
@@ -19,11 +20,11 @@ export const TopPageComponent = ({ page, products }: ITopPageComponent): JSX.Ele
                         </div>)) }
                 </div>
             </div>
-            <div className={st.HHtitle}>
-                <Htag tag='h2'>Вакансии - {page.category}</Htag>
+            <div className={ st.HHtitle }>
+                <Htag tag="h2">Вакансии - { page.category }</Htag>
                 <Tag color="red" size="m">hh.ru</Tag>
             </div>
-            <HHData {...page.hh} />
+            { firstCategory == TopLevelCategory.Courses && <HHData { ...page.hh } /> }
         </div>
     );
 };
