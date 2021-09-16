@@ -4,6 +4,7 @@ import { Htag, Tag } from '../../componetns';
 import st from './TopPageComponent.module.css'
 import { HHData } from '../../componetns/HHData/HHData';
 import { TopLevelCategory } from '../../interfaces/top-page.interface';
+import { Advatages } from '../../componetns/Advantages/Advanages';
 
 export const TopPageComponent = ({ page, products, firstCategory }: ITopPageComponent): JSX.Element => {
 
@@ -25,6 +26,9 @@ export const TopPageComponent = ({ page, products, firstCategory }: ITopPageComp
                 <Tag color="red" size="m">hh.ru</Tag>
             </div>
             { firstCategory == TopLevelCategory.Courses && <HHData { ...page.hh } /> }
+        <div>
+          <Advatages data={[]}/>
+        </div>
         </div>
     );
 };

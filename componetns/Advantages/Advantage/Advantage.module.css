@@ -1,0 +1,39 @@
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    grid-area: title;
+    background: red;
+}
+
+.icon {
+    grid-area: icon;
+    background: pink;
+}
+
+.text {
+    margin-left: 25px;
+    border-left: 1px solid black;
+    padding-left: 10px;
+    background: #1DC37E;
+    grid-area: text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.wrapper {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+		"icon title"
+		"text text";
+    gap:0 40px;
+}
