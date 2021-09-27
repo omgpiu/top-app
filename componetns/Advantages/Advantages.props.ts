@@ -1,5 +1,7 @@
+import { ITopPageAdvantage } from '../../interfaces/top-page.interface';
+
 export type AdvantagesProps = {
-  data:Array<any>
+  advantages: ITopPageAdvantage[];
 
 }
 

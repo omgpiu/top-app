@@ -1,39 +1,41 @@
 .title {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 27px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    grid-area: title;
-    background: red;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+
+	font-size: 20px;
+	font-weight: bold;
+	font-style: normal;
+	line-height: 27px;
+	grid-area: title;
 }
 
 .icon {
-    grid-area: icon;
-    background: pink;
+	grid-area: icon;
 }
 
 .text {
-    margin-left: 25px;
-    border-left: 1px solid black;
-    padding-left: 10px;
-    background: #1DC37E;
-    grid-area: text;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 29px;
+	margin-left: 25px;
+	padding-left: 65px;
+
+	border-left: 1px solid var(--grey-middle);
+
+	font-size: 18px;
+	font-weight: normal;
+	font-style: normal;
+	line-height: 29px;
+	grid-area: text;
 }
 
 .wrapper {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
+	display: grid;
+
+	margin-top: 30px;
+	margin-bottom: 35px;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
 		"icon title"
 		"text text";
-    gap:0 40px;
+	gap: 17px 40px;
 }

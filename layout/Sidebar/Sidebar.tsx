@@ -7,7 +7,7 @@ import st from './Sidebar.module.css'
 
 
 export const Sidebar: React.FC<SidebarProps> = ({className,...props}): JSX.Element => {
-
+  console.log(className);
   return (
     <aside {...props} className={cn(className,st.sidebar)}>
         <LogoOWL className={st.logo}/>
