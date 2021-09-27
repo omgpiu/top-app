@@ -4,6 +4,7 @@ import { Advantage } from './Advantage/Advantage';
 import st from './Advantages.module.css';
 import { Htag } from '../Htag/Htag';
 
+
 export const Advatages: React.FC<AdvantagesProps> = ({
                                                        advantages
                                                      }): JSX.Element => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import { ITopPageComponent } from './TopPageComponent.props';
-import { Advatages, Htag, Ptag, Tag } from '../../componetns';
+import { Advatages, Htag, Tag } from '../../componetns';
 import st from './TopPageComponent.module.css';
 import { HHData } from '../../componetns/HHData/HHData';
 import { TopLevelCategory } from '../../interfaces/top-page.interface';
+
 
 export const TopPageComponent = ({page, products, firstCategory}: ITopPageComponent): JSX.Element => {
   console.log(page);
@@ -26,9 +27,9 @@ export const TopPageComponent = ({page, products, firstCategory}: ITopPageCompon
       </div>
       {firstCategory == TopLevelCategory.Courses && page.hh && <HHData {...page.hh} />}
       {page.advantages?.length && <Advatages advantages={page.advantages} />}
-      {page.seoText &&<div className={st.seo} dangerouslySetInnerHTML={{__html:page.seoText}}/>}
+      {page.seoText && <div className={st.seo} dangerouslySetInnerHTML={{__html: page.seoText}} />}
       <Htag tag='h2'>Получаемые навыки</Htag>
-      {page.tags.map(e=><Tag color='primary' key={e} children={e}/>)}
+      {page.tags.map(e => <Tag color='primary' key={e} children={e} />)}
     </div>
   );
 };
