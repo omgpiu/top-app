@@ -7,6 +7,6 @@ export enum SortEnum {
 
 export interface ISortProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   sort: SortEnum;
-  setSort: (sort: SortEnum) => void;
+  setSort: (type: SortEnum) => void;
 
 }
