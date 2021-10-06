@@ -5,7 +5,6 @@ import st from './Sort.module.css';
 import cn from 'classnames';
 
 export const Sort: React.FC<ISortProps> = ({sort, setSort, className,...props}): JSX.Element => {
- console.log(sort)
   return <div className={cn(st.sort,className)} {...props}>
 
     <span

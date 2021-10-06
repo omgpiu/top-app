@@ -28,6 +28,7 @@
 	grid-template-columns: 20px 1fr;
 	gap: 8px;
 }
-.sort span:not(.active){
+
+.sort span:not(.active) {
 	grid-template-columns: 1fr;
 }
