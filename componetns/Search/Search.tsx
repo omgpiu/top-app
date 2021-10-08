@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEventHandler, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { ISearch } from './Search.props';
 import SearchCss from './Search.module.css';
 import cn from 'classnames';
