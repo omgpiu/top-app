@@ -128,7 +128,6 @@
 
 .characteristics {
 	display: grid;
-	align-items: baseline;
 
 	padding-right: 60px;
 
@@ -145,9 +144,8 @@
 .characteristicsDots {
 	margin-bottom: 5px;
 
-	border-bottom: 1px dashed var(--gray-light);
+	border-bottom: 1px dashed var(--grey-light);
 }
-
 .reviews {
 	overflow: hidden;
 

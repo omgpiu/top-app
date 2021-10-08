@@ -7,6 +7,7 @@ import { Rating } from '../Rating/Rating';
 import { Tag } from '../Tag/Tag';
 import { Button } from '../Button/Button';
 import { Divider } from '../Divider/Divider';
+import { declOfNumber } from '../../helpers/declOfNumber';
 
 export const Product: React.FC<IProduct> = ({className, product, ...rest}): JSX.Element => {
   return (
@@ -36,14 +37,19 @@ export const Product: React.FC<IProduct> = ({className, product, ...rest}): JSX.
         кредит
       </div>
       <div className={ProductCSS.rateTitle}>
-        {product.reviewCount} отзывов
+        {product.reviewCount} {declOfNumber(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
       </div>
       <Divider className={ProductCSS.hr} />
       <div className={ProductCSS.description}>
         {product.description}
       </div>
-      <div className={ProductCSS.features}>
-        Features
+      <div className={ProductCSS.feature}>
+        {product.characteristics.map(c => (
+          <div className={ProductCSS.characteristics} key={c.name}>
+            <span className={ProductCSS.characteristicsName}>{c.name}</span>
+            <span className={ProductCSS.characteristicsDots}></span>
+            <span className={ProductCSS.characteristicsValue}>{c.value}</span>
+          </div>))}
       </div>
       <div className={ProductCSS.advBlock}>
         {product.advantages && <div className={ProductCSS.advantages}>
