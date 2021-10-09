@@ -146,14 +146,26 @@
 
 	border-bottom: 1px dashed var(--grey-light);
 }
-.reviews {
-	overflow: hidden;
 
+.reviews {
+	/* overflow: hidden; */
 	padding: 30px;
 }
 
 .rateTitle a {
 	color: var(--primary);
+}
+
+.closed {
+	overflow: hidden;
+
+	max-height: 0;
+	padding: 0;
+}
+
+.opened {
+	max-height: unset;
+	padding: 30px;
 }
 
 @media screen and (max-width: 1320px) {

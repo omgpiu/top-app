@@ -9,7 +9,7 @@ import { ParsedUrlQuery } from 'querystring';
 const Type = ({ firstCategory }: TypeProps): JSX.Element => {
 
     return (
-        <div style={ { border: '1px solid black' } }>
+        <div>
             TYPE PAGE:{ firstCategory }
         </div>
     );

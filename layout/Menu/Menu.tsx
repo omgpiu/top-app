@@ -79,7 +79,7 @@ export const Menu: React.FC = (): JSX.Element => {
                     <Link key={ page.alias + page.category } href={ `/${ route }/${ page.alias }` }>
                         <a
                             className={ cn(st.thirdLevel, {
-                                [st.thirdLevelActive]: false
+                                [st.thirdLevelActive]:  `/${route}/${page.alias}` == router.asPath
                             }) }
 
                         > { page.category }</a>

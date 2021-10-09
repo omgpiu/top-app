@@ -36,3 +36,12 @@ a {
 	--grey-middle: #D2D2D2;
 	--gray-light: #A4A4A4;
 }
+
+.visualyHidden {
+	position: absolute;
+
+	overflow: hidden;
+
+	width: 0;
+	height: 0;
+}
