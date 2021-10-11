@@ -5,6 +5,7 @@ import { IMenuItem } from '../../interfaces/menu.interface';
 import React from 'react';
 import { firstLevelMenu } from '../../helpers';
 import { ParsedUrlQuery } from 'querystring';
+import { API } from '../../API/API';
 
 const Type = ({ firstCategory }: TypeProps): JSX.Element => {
 
@@ -37,7 +38,7 @@ export const getStaticProps: GetStaticProps<TypeProps> = async ({ params }: GetS
     }
     //сервер ожидает POST , вместо get <WTF>
     const { data: menu } = await axios.post<IMenuItem[]>(
-        process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
+      API.topPage.find,
         { firstCategory: firstCategoryItem.id });
     return {
         props: {

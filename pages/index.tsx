@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
-import { Button, Htag, Input, Ptag, Rating, Search, Textarea } from '../componetns';
+import React from 'react';
+import { Button, Htag, Ptag, Search } from '../componetns';
 import { withLayout } from '../layout/Layout';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
 import { IMenuItem } from '../interfaces/menu.interface';
+import { API } from '../API/API';
 
 
 function Home({menu}: HomeProps): JSX.Element {
-  const [rating, setRating] = useState(4);
   return (
     <>
       <Htag tag='h1'>Text</Htag>
       <Button appearance={'primary'} arrow={'right'}>Primary</Button>
       <Button appearance={'ghost'} arrow={'right'}>Ghost</Button>
       <Ptag size={'default'}>Bla Bla</Ptag>
-      <Rating rating={rating} isEditable setRating={setRating} />
-      <Input placeholder='text nye'/>
-      <Textarea placeholder='text 2'/>
       <Search />
 
     </>
@@ -29,7 +26,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const firstCategory = 0;
   //сервер ожидает POST , вместо get <WTF>
   const {data: menu} = await axios.post<IMenuItem[]>(
-    process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
+    API.topPage.find,
     {firstCategory});
   return {
     props: {

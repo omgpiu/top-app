@@ -17,7 +17,6 @@ export const Search: React.FC<ISearch> = ({className, children, ...rest}): JSX.E
     }
   });
   const onKeyDownHandler =(event: React.KeyboardEvent<HTMLElement>) => {
-    console.log(event);
     if (event?.code == 'Enter') {
       onClickHandler();
     }

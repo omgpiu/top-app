@@ -35,6 +35,9 @@ a {
 	--orange: #FC836D;
 	--grey-middle: #D2D2D2;
 	--gray-light: #A4A4A4;
+	--red-light: #FEA291;
+	--medium-font-size: 14px;
+	--medium-line-height: 24px;
 }
 
 .visualyHidden {

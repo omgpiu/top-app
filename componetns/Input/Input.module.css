@@ -1,3 +1,7 @@
+.wrapper {
+	position: relative;
+}
+
 .input {
 	padding: 7px 15px;
 
@@ -15,4 +19,16 @@
 
 .input::placeholder {
 	color: var(--gray-light);
+}
+
+.error {
+	border: 1px solid var(--red);
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+
+	color: var(--red);
 }

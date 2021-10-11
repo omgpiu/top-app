@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { ITopPageComponent } from './TopPageComponent.props';
 import { Advatages, Htag, Product, Sort, Tag } from '../../componetns';
 import st from './TopPageComponent.module.css';
@@ -12,6 +12,9 @@ export const TopPageComponent = ({page, products, firstCategory}: ITopPageCompon
   const [{products: sortedProducts, sort}, dispatch] = useReducer(sortReducer, {products, sort: SortEnum.Rating});
   const setSort = (sort: SortEnum) => dispatch({type: sort});
 
+  useEffect(() => {
+    dispatch({type: 'newState', newState: products});
+  }, [products]);
   return (
     <div className={st.wrapper}>
       <div className={st.title}>
