@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import { IProduct } from './Product.props';
 import ProductCSS from './Product.module.css';
 import Image from 'next/image';
@@ -12,8 +12,14 @@ import { priceRu } from '../../helpers';
 import cn from 'classnames';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
+import { motion } from 'framer-motion';
 
-export const Product: React.FC<IProduct> = ({className, product, ...rest}): JSX.Element => {
+
+export const Product = motion(forwardRef(({
+                                                                className,
+                                                                product,
+                                                                ...rest
+                                                              }:IProduct, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
 
   const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +41,7 @@ export const Product: React.FC<IProduct> = ({className, product, ...rest}): JSX.
 
 
   return (
-    <div className={className} {...rest}>
+    <div className={className} {...rest} ref={ref}>
       <Card className={ProductCSS.product}>
         <div className={ProductCSS.logo}>
           <Image src={process.env.NEXT_PUBLIC_DOMAIN + product.image} alt={product.title} width='70px' height='70px' />
@@ -123,4 +129,4 @@ export const Product: React.FC<IProduct> = ({className, product, ...rest}): JSX.
       </Card>
     </div>
   );
-};
+}));
