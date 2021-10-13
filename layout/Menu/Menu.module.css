@@ -2,14 +2,18 @@
 	display: grid;
 
 	align-items: center;
-
+    margin-top: 20px;
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 25px;
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
 }
+.firstLevelList {
+    padding: 0;
 
+    list-style: none;
+}
 .firstLevelActive,
 .firstLevel:hover {
 	color: var(--primary);
@@ -63,10 +67,10 @@
 	cursor: pointer;
 
 	color: var(--grey-dark);
+	outline-offset: -1px;
 
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 19px;
 }
 
 .thirdLevelActive,

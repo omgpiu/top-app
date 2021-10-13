@@ -22,16 +22,16 @@ a {
 :root {
 	--black: #3B434E;
 	--white: white;
-	--primary: #7258F5;
+	--primary: #7351F5;
 	--primary-hover: #300DBD;
 	--red: #FC836D;
-	--green: #1DC37E;
+	--green: #127A4F;
 	--green-light: #C8F8E4;
 	--font-family: 'Noto Sans KR', sans-serif;
 	--grey-light: #EBEBEB;
 	--font-size-footer: 16px;
 	--line-height-footer: 24px;
-	--grey-dark: #787D85;
+	--grey-dark: #71767D;
 	--orange: #FC836D;
 	--grey-middle: #D2D2D2;
 	--gray-light: #A4A4A4;

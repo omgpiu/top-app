@@ -16,10 +16,10 @@ import { motion } from 'framer-motion';
 
 
 export const Product = motion(forwardRef(({
-                                                                className,
-                                                                product,
-                                                                ...rest
-                                                              }:IProduct, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+                                            className,
+                                            product,
+                                            ...rest
+                                          }: IProduct, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
 
   const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +28,10 @@ export const Product = motion(forwardRef(({
 
   //variables
   const arrowDirection = isReviewOpened ? 'down' : 'right';
+  const variants = {
+    visible: {opacity: 1, height: 'auto'},
+    hidden: {opacity: 0, height: 0},
+  };
 
   //functions
   const onClickReviewHandler = () => setIsReviewOpened(!isReviewOpened);
@@ -114,19 +118,29 @@ export const Product = motion(forwardRef(({
           > Читать отзывы</Button>
         </div>
       </Card>
-      <Card ref={reviewRef} color='grey' className={cn(ProductCSS.reviews, {
-        [ProductCSS.opened]: isReviewOpened,
-        [ProductCSS.closed]: !isReviewOpened
-      })}>
-        {product.reviews.length ? product.reviews.map(r => {
-          return (< div key={r._id}>
-            <Review review={r} />
-            <Divider />
-          </div>);
-        }) : 'Отзывов еще нет'}
-        <Divider />
-        <ReviewForm productId={product._id} />
-      </Card>
+      <motion.div
+
+        layout
+        variants={variants}
+        initial={'hidden'}
+        animate={isReviewOpened ? 'visible' : 'hidden'}
+      >
+        <Card ref={reviewRef} color='grey'
+              className={cn(ProductCSS.reviews, {
+                [ProductCSS.opened]: isReviewOpened,
+                [ProductCSS.closed]: !isReviewOpened,
+              })}>
+          {product.reviews.length ? product.reviews.map(r => {
+            return (< div key={r._id}>
+              <Review review={r} />
+              <Divider />
+            </div>);
+          }) : 'Отзывов еще нет'}
+          <Divider />
+          <ReviewForm productId={product._id} />
+        </Card>
+      </motion.div>
+
     </div>
   );
 }));

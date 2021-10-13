@@ -35,6 +35,7 @@
 	}
 
 	.wrapper {
+		gap: 10px;
 		grid-template-columns: minmax(320px, 1fr);
 		grid-template-areas:
 			"header"

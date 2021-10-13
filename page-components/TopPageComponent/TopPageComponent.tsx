@@ -15,10 +15,12 @@ export const TopPageComponent = ({page, products, firstCategory}: ITopPageCompon
   useEffect(() => {
     dispatch({type: 'newState', newState: products});
   }, [products]);
+
+
   return (
     <div className={st.wrapper}>
       <div className={st.title}>
-        <Htag tag='h1'>{page.title}</Htag>
+        <Htag tag='h1'>{page?.title}</Htag>
         {products && <Tag color='grey' size='m'>{products.length}</Tag>}
         <Sort sort={sort} setSort={setSort} />
       </div>

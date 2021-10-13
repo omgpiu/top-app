@@ -148,24 +148,21 @@
 }
 
 .reviews {
-	/* overflow: hidden; */
+	overflow: hidden;
+
 	padding: 30px;
+}
+
+.opened {
+	height: auto;
+}
+
+.closed {
+	height: 0;
 }
 
 .rateTitle a {
 	color: var(--primary);
-}
-
-.closed {
-	overflow: hidden;
-
-	max-height: 0;
-	padding: 0;
-}
-
-.opened {
-	max-height: unset;
-	padding: 30px;
 }
 
 @media screen and (max-width: 1320px) {

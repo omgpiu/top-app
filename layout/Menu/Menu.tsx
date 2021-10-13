@@ -50,7 +50,12 @@ export const Menu: React.FC = (): JSX.Element => {
     }));
 
   };
-
+  const openSecondLevelKey = (key: React.KeyboardEvent<HTMLDivElement>, secondCategory: string) => {
+    if (key.code == 'Space' || key.code == 'Enter') {
+      key.preventDefault();
+      openSecondLevel(secondCategory)();
+    }
+  };
   const firstLevelMenuRender = () => {
     return (
       <>
@@ -85,7 +90,9 @@ export const Menu: React.FC = (): JSX.Element => {
           }
           return (
             <div key={slmenu._id.secondCategory}>
-              <div className={st.secondLevel} onClick={openSecondLevel(slmenu._id.secondCategory)}>
+              <div className={st.secondLevel} tabIndex={0}
+                   onKeyDown={(key) => openSecondLevelKey(key, slmenu._id.secondCategory)}
+                   onClick={openSecondLevel(slmenu._id.secondCategory)}>
                 {slmenu._id.secondCategory}
               </div>
               <motion.div
@@ -95,7 +102,7 @@ export const Menu: React.FC = (): JSX.Element => {
                 animate={slmenu.isOpen ? 'visible' : 'hidden'}
                 className={st.secondLevelBlock}
               >
-                {thirdLevelMenuRender(slmenu.pages, flmenu.route)}
+                {thirdLevelMenuRender(slmenu.pages, flmenu.route, slmenu.isOpen ?? false)}
               </motion.div>
             </div>
           );
@@ -103,7 +110,7 @@ export const Menu: React.FC = (): JSX.Element => {
       </div>
     );
   };
-  const thirdLevelMenuRender = (pages: IPageItem[], route: string) => {
+  const thirdLevelMenuRender = (pages: IPageItem[], route: string, isOpened: boolean) => {
     return (
       <>
         {pages.map(page => (
@@ -113,10 +120,10 @@ export const Menu: React.FC = (): JSX.Element => {
 
           >
             <Link href={`/${route}/${page.alias}`}>
-              <a
-                className={cn(st.thirdLevel, {
-                  [st.thirdLevelActive]: `/${route}/${page.alias}` == router.asPath
-                })}
+              <a tabIndex={isOpened ? 0 : -1}
+                 className={cn(st.thirdLevel, {
+                   [st.thirdLevelActive]: `/${route}/${page.alias}` == router.asPath
+                 })}
 
               > {page.category}</a>
             </Link>

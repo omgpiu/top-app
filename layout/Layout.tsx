@@ -5,8 +5,7 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 import st from './Layout.module.css';
 import { AppContextProvider, IAppContext } from '../context';
-
-
+import { Up } from '../componetns';
 
 
 const Layout: React.FC<LayoutProps> = ({children}): JSX.Element => {
@@ -19,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({children}): JSX.Element => {
         {children}
       </div>
       <Footer className={st.footer} />
+      <Up />
     </div>
   );
 };
