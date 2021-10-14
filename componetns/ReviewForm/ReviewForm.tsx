@@ -13,7 +13,7 @@ import { useState } from 'react';
 import Cross from './Cross.svg';
 
 
-export const ReviewForm = ({productId, className, ...props}: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFormProps): JSX.Element => {
   const {register, control, handleSubmit, formState: {errors, isSubmitSuccessful}, reset} = useForm<IReviewForm>();
   const [error, setError] = useState<string>('');
 
@@ -33,7 +33,7 @@ export const ReviewForm = ({productId, className, ...props}: ReviewFormProps): J
     reset();
     setError('');
   };
-
+  const tabIndex = isOpened ? 0 : -1;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
@@ -44,24 +44,33 @@ export const ReviewForm = ({productId, className, ...props}: ReviewFormProps): J
           placeholder='Имя'
           error={errors.name}
           {...register('name', {required: {value: true, message: 'Заполните имя'}})}
+          tabIndex={tabIndex}
         />
         <Input
           className={ReviewFormCSS.titleInput}
           placeholder='Заголовок отзыва'
           error={errors.title}
-          {...register('title', {required: {value: true, message: 'Заполните заголовок'}})} />
+          {...register('title', {required: {value: true, message: 'Заполните заголовок'}})}
+          tabIndex={tabIndex}
+        />
         <div className={ReviewFormCSS.rating}>
           <span>Оценка:</span>
           <Controller
             rules={{required: {value: true, message: 'Укажите рейтинг'}}}
             name='rating'
             control={control}
-            render={({field}) => <Rating
-              error={errors.rating}
-              rating={field.value}
-              isEditable
-              ref={field.ref}
-              setRating={field.onChange} />}
+            render={({field}) =>
+              <Rating
+                error={errors.rating}
+                rating={field.value}
+                isEditable
+                ref={field.ref}
+                setRating={field.onChange}
+                tabIndex={tabIndex}
+              />
+
+
+            }
           />
         </div>
 
@@ -70,11 +79,12 @@ export const ReviewForm = ({productId, className, ...props}: ReviewFormProps): J
           className={ReviewFormCSS.description}
           placeholder='Текст отзыва'
           {...register('description', {required: {value: true, message: 'Заполните отзыв '}})}
+          tabIndex={tabIndex}
         />
         <div className={ReviewFormCSS.submit}>
-          <Button appearance='primary'>Отправить</Button>
-          <span
-            className={ReviewFormCSS.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
+          <Button appearance='primary' tabIndex={tabIndex}>Отправить</Button>
+          <span className={ReviewFormCSS.info}>
+            * Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
         </div>
       </div>
 
