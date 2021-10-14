@@ -12,9 +12,7 @@ export const Sort: React.FC<ISortProps> = ({sort, setSort, className, ...props})
     }
   };
   return <div className={cn(st.sort, className)} {...props}>
-    <span
-      tabIndex={0}
-      onKeyDown={(key) => onKeyDownHandler(key, SortEnum.Rating)}
+    <button
       onClick={() => setSort(SortEnum.Rating)}
       className={cn({
         [st.active]: sort === SortEnum.Rating
@@ -22,10 +20,8 @@ export const Sort: React.FC<ISortProps> = ({sort, setSort, className, ...props})
     >
       <SortIcon className={st.icon} />
       По рейтингу
-    </span>
-    <span
-      tabIndex={0}
-      onKeyDown={(key) => onKeyDownHandler(key, SortEnum.Price)}
+    </button>
+    <button
       onClick={() => setSort(SortEnum.Price)}
       className={cn({
         [st.active]: sort === SortEnum.Price
@@ -33,7 +29,7 @@ export const Sort: React.FC<ISortProps> = ({sort, setSort, className, ...props})
     >
       <SortIcon className={st.icon} />
       По цене
-    </span>
+    </button>
 
   </div>;
 };
