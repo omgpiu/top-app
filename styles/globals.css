@@ -40,7 +40,7 @@ a {
 	--medium-line-height: 24px;
 }
 
-.visualyHidden {
+.visuallyHidden {
 	position: absolute;
 
 	overflow: hidden;

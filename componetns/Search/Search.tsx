@@ -22,7 +22,7 @@ export const Search: React.FC<ISearch> = ({className, children, ...rest}): JSX.E
     }
   };
   return (
-    <div className={cn(SearchCss.search, className)}{...rest}>
+    <form className={cn(SearchCss.search, className)}{...rest} role='search'>
       <Input
         className={SearchCss.input}
         value={search}
@@ -37,6 +37,6 @@ export const Search: React.FC<ISearch> = ({className, children, ...rest}): JSX.E
       >
         <GlassIcon />
       </Button>
-    </div>
+    </form>
   );
 };

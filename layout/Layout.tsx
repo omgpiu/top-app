@@ -32,9 +32,9 @@ const Layout: React.FC<LayoutProps> = ({children}): JSX.Element => {
         })}>Сразу к содержанию</a>
       <Header className={st.header} />
       <Sidebar className={st.sidebar} children={<div>123</div>} />
-      <div className={st.body} ref={bodyRef} tabIndex={0}>
+      <main className={st.body} ref={bodyRef} tabIndex={0} role='main'>
         {children}
-      </div>
+      </main>
       <Footer className={st.footer} />
       <Up />
     </div>

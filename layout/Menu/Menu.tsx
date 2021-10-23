@@ -135,9 +135,9 @@ export const Menu: React.FC = (): JSX.Element => {
 
 
   return (
-    <div className={st.wrapper}>
+    <nav className={st.wrapper} role='navigation'>
       {firstLevelMenuRender()}
-    </div>
+    </nav>
 
   );
 };
