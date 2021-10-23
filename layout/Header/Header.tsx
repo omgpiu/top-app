@@ -5,12 +5,13 @@ import HeaderCSS from './Header.module.css';
 import { LogoOWL } from '../../helpers/logo';
 import st from '../Sidebar/Sidebar.module.css';
 import { ButtonIcon } from '../../componetns/ButtonIcon/ButtonIcon';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { useRouter } from 'next/router';
 
 export const Header: React.FC<HeaderProps> = ({className, ...props}): JSX.Element => {
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const onClickHandler = (value: boolean) => () => setIsOpened(value);
   const variants = {
@@ -22,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({className, ...props}): JSX.Elemen
       }
     },
     closed: {
-      opacity: 0,
+      opacity: shouldReduceMotion ? 1 : 0,
       x: '100%'
     }
   };

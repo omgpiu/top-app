@@ -6,9 +6,11 @@ import { HHData } from '../../componetns/HHData/HHData';
 import { TopLevelCategory } from '../../interfaces/top-page.interface';
 import { SortEnum } from '../../componetns/Sort/Sort.props';
 import { sortReducer } from './sort.reducer';
+import { useReducedMotion } from 'framer-motion';
 
 
 export const TopPageComponent = ({page, products, firstCategory}: ITopPageComponent): JSX.Element => {
+  const shouldReduceMotion = useReducedMotion();
   const [{products: sortedProducts, sort}, dispatch] = useReducer(sortReducer, {products, sort: SortEnum.Rating});
   const setSort = (sort: SortEnum) => dispatch({type: sort});
 
@@ -26,7 +28,7 @@ export const TopPageComponent = ({page, products, firstCategory}: ITopPageCompon
       </div>
       <div role='list'>
         {sortedProducts && sortedProducts.map(p =>
-          (<Product layout key={p._id} product={p} role='listitem'/>))}
+          (<Product layout={!shouldReduceMotion} key={p._id} product={p} role='listitem' />))}
       </div>
       <div className={st.hhTitle}>
         <Htag tag='h2'>Вакансии - {page.category}</Htag>

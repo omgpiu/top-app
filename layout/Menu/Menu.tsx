@@ -7,10 +7,11 @@ import { FirstLevelMenuItem, IPageItem } from '../../interfaces/menu.interface';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { firstLevelMenu } from '../../helpers';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 
 export const Menu: React.FC = (): JSX.Element => {
+  const shouldReduceMotion = useReducedMotion();
   const [anounce, setAnounce] = useState<'closed' | 'opened' | undefined>();
   const router = useRouter();
 
@@ -19,7 +20,7 @@ export const Menu: React.FC = (): JSX.Element => {
   const variantsSecondLevel = {
     visible: {
       marginBottom: 20,
-      transition: {
+      transition: shouldReduceMotion ? {} : {
         when: 'beforeChildren',
         staggerChildren: 0.1
       }
@@ -35,7 +36,7 @@ export const Menu: React.FC = (): JSX.Element => {
       height: 29,
     },
     hidden: {
-      opacity: 0,
+      opacity: shouldReduceMotion ? 1 : 0,
       height: 0,
     }
   };

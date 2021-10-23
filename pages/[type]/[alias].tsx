@@ -11,12 +11,23 @@ import { IProductModal } from '../../interfaces/product.interface';
 import { firstLevelMenu } from '../../helpers';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../API/API';
+import Head from 'next/head';
+import { Error404 } from '../404';
 
-
-const TopPage = ({menu, page, products, firstCategory}: ITopPageProps): JSX.Element => {
+const TopPage = ({page, products, firstCategory}: ITopPageProps): JSX.Element => {
+  if (!page || !products) {
+    return <Error404 />;
+  }
 
   return (
     <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name='description' content={page.metaDescription} />
+        <meta property='og:title' content={page.metaTitle} />
+        <meta property='og:description' content={page.metaDescription} />
+        <meta property='og:type' content='article' />
+      </Head>
       <TopPageComponent
         page={page}
         firstCategory={firstCategory}
