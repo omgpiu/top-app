@@ -16,7 +16,7 @@ export const Search: React.FC<ISearch> = ({className, children, ...rest}): JSX.E
       q: search
     }
   });
-  const onKeyDownHandler =(event: React.KeyboardEvent<HTMLElement>) => {
+  const onKeyDownHandler = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event?.code == 'Enter') {
       onClickHandler();
     }
@@ -33,6 +33,7 @@ export const Search: React.FC<ISearch> = ({className, children, ...rest}): JSX.E
       <Button appearance='primary'
               className={SearchCss.button}
               onClick={onClickHandler}
+              aria-label='Искать по сайту'
       >
         <GlassIcon />
       </Button>
