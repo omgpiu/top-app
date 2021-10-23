@@ -24,9 +24,9 @@ export const TopPageComponent = ({page, products, firstCategory}: ITopPageCompon
         {products && <Tag color='grey' size='m' aria-label={products.length + 'элементов'}>{products.length}</Tag>}
         <Sort sort={sort} setSort={setSort} />
       </div>
-      <div>
+      <div role='list'>
         {sortedProducts && sortedProducts.map(p =>
-          (<Product layout key={p._id} product={p} />))}
+          (<Product layout key={p._id} product={p} role='listitem'/>))}
       </div>
       <div className={st.hhTitle}>
         <Htag tag='h2'>Вакансии - {page.category}</Htag>
