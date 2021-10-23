@@ -62,11 +62,11 @@ export const Product = motion(forwardRef(({
           </Tag>}
         </div>
         <div className={ProductCSS.credit}>
-          <span className="visuallyHidden">кредит</span>
+          <span className='visuallyHidden'>кредит</span>
           {priceRu(product.credit)}/<span className={ProductCSS.month}>мес</span>
         </div>
         <div className={ProductCSS.rating}>
-          <span className="visuallyHidden">{'рейтинг' + (product.reviewAvg ?? product.initialRating)}</span>
+          <span className='visuallyHidden'>{'рейтинг' + (product.reviewAvg ?? product.initialRating)}</span>
           <Rating rating={product.reviewAvg ?? product.initialRating} />
         </div>
         <div className={ProductCSS.tags}>
@@ -116,8 +116,12 @@ export const Product = motion(forwardRef(({
         <Divider className={cn(ProductCSS.hr, ProductCSS.hr2)} />
         <div className={ProductCSS.actions}>
           <Button appearance='primary'>Узнать подробнее</Button>
-          <Button appearance='ghost' arrow={arrowDirection} className={ProductCSS.reviewButton}
-                  onClick={onClickReviewHandler}
+          <Button
+            appearance='ghost'
+            arrow={arrowDirection}
+            className={ProductCSS.reviewButton}
+            onClick={onClickReviewHandler}
+            aria-expanded={isReviewOpened}
           > Читать отзывы</Button>
         </div>
       </Card>

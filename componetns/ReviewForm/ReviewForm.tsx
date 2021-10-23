@@ -14,7 +14,14 @@ import Cross from './Cross.svg';
 
 
 export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFormProps): JSX.Element => {
-  const {register, control, handleSubmit, formState: {errors, isSubmitSuccessful}, reset} = useForm<IReviewForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: {errors, isSubmitSuccessful},
+    reset,
+    clearErrors
+  } = useForm<IReviewForm>();
   const [error, setError] = useState<string>('');
 
   const onSubmit = async (value: IReviewForm) => {
@@ -33,6 +40,7 @@ export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFor
     reset();
     setError('');
   };
+  const onClickButtonHandler = () => clearErrors();
   const tabIndex = isOpened ? 0 : -1;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,6 +53,7 @@ export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFor
           error={errors.name}
           {...register('name', {required: {value: true, message: 'Заполните имя'}})}
           tabIndex={tabIndex}
+          aria-invalid={!!errors.name}
         />
         <Input
           className={ReviewFormCSS.titleInput}
@@ -52,6 +61,7 @@ export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFor
           error={errors.title}
           {...register('title', {required: {value: true, message: 'Заполните заголовок'}})}
           tabIndex={tabIndex}
+          aria-invalid={!!errors.title}
         />
         <div className={ReviewFormCSS.rating}>
           <span>Оценка:</span>
@@ -80,9 +90,11 @@ export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFor
           placeholder='Текст отзыва'
           {...register('description', {required: {value: true, message: 'Заполните отзыв '}})}
           tabIndex={tabIndex}
+          aria-invalid={!!errors.description}
+          aria-label='Текст отзыва'
         />
         <div className={ReviewFormCSS.submit}>
-          <Button appearance='primary' tabIndex={tabIndex}>Отправить</Button>
+          <Button appearance='primary' tabIndex={tabIndex} onClick={onClickButtonHandler}>Отправить</Button>
           <span className={ReviewFormCSS.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
         </div>
@@ -92,10 +104,14 @@ export const ReviewForm = ({productId, isOpened, className, ...props}: ReviewFor
         [ReviewFormCSS.success]: !error,
         [ReviewFormCSS.error]: error,
       })}>
-        <span className={ReviewFormCSS.requestTitle}>{error || 'Ваш отзыв отправлен'}</span>
+        <span className={ReviewFormCSS.requestTitle} role='alert'>{error || 'Ваш отзыв отправлен'}</span>
         {!error &&
         <span className={ReviewFormCSS.successDescription}>Спасибо, Ваш отзыв будет опубликован после проверки</span>}
-        <Cross className={ReviewFormCSS.closeIcon} onClick={onClickIconHandler} />
+        <button className={ReviewFormCSS.closeIcon}
+                aria-label='Закрыть оповещение'
+        >
+          <Cross onClick={onClickIconHandler} />
+        </button>
       </div>}
 
     </form>

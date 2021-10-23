@@ -13,7 +13,7 @@ export const Input: React.FC<IInput> = forwardRef(({
       <input className={cn(InputCSS.input, {
         [InputCSS.error]: error
       })} ref={ref} {...props} />
-      {error && <span className={InputCSS.errorMessage}>{error.message}</span>}
+      {error && <span role='alert' className={InputCSS.errorMessage}>{error.message}</span>}
     </div>
 
   );

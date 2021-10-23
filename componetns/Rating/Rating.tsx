@@ -63,6 +63,12 @@ export const Rating: React.FC<RatingProps> = forwardRef(({
           onClick={() => changeRating(i + 1)}
           onKeyDown={handleKey}
           ref={r => ratingArrayRef.current?.push(r)}
+          role={isEditable ? 'slider' : ''}
+          aria-valuenow={rating}
+          aria-valuemax={5}
+          aria-valuemin={1}
+          aria-label={isEditable ? 'Укажите рейтинг' : ('рейтинг' + rating)}
+          aria-invalid={!!error}
         >
         <StarIcon />
         </span>
@@ -81,7 +87,7 @@ export const Rating: React.FC<RatingProps> = forwardRef(({
     })
     }>
       {ratingArray.map((r, i) => (<span key={i}>{r}</span>))}
-      {error && <span className={RatingCSS.errorMessage}>{error.message}</span>}
+      {error && <span role='alert' className={RatingCSS.errorMessage}>{error.message}</span>}
     </div>
 
   );

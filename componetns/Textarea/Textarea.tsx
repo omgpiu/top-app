@@ -15,7 +15,7 @@ export const Textarea: React.FC<ITextarea> = forwardRef(({
             <textarea className={cn(TaCss.textarea, {
               [TaCss.error]: error
             })} ref={ref} {...props} />
-      {error && <span className={TaCss.errorMessage}>{error.message}</span>}
+      {error && <span role='alert' className={TaCss.errorMessage}>{error.message}</span>}
     </div>
 
   );
